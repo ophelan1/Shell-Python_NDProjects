@@ -3,8 +3,8 @@ Assignments
 
 This is the [CSE-20189-SP16] reading and homework assignments repository for:
 
-* **Name**:  Dommer McDomerson
-* **NetID**: dmcdomers
+* **Name**:  Owen Phelan
+* **NetID**: ophelan1
 
 Readings
 --------
@@ -66,4 +66,5 @@ Each **homework** is due at the beginning of class on **Friday** and is worth
 
 - [Homework 10](https://www3.nd.edu/~pbui/teaching/cse.20189.sp16/homework10.html)
 
-[CSE-20189-SP16]:   https://www3.nd.edu/~pbui/teaching/cse.20189.sp16/
+[CSE-20189-SP16]:   https://www2.nd.edu/~pbui/teaching/cse.20189.sp16/
+
