@@ -21,10 +21,20 @@ fi
 stylize() {
      sed -e 's|pre>|p style="color:green;">|g' \
 	 -e 's|<h\([0-9]\)>|<h\1 style="color:yellow;">|g' \
+	 -e 's|<code>|<code style="color:green;">|g' \
 	 -e 's|<strong>|<strong style="color:magenta;">|g'
 }
 
+
+ELINKS_FLAGS="-force-html -dump -dump-width $(tput cols) -no-numbering -no-references"
+
+case $(elinks -version | awk '{print $2}' | head -n 1) in
+    0.12*|0.13*)
+    ELINKS_FLAGS="$ELINKS_FLAGS -dump-color-mode 1"
+    ;;
+esac
+
 exec markdown_py $@ |
      stylize |
-     elinks -force-html -dump -dump-width $(tput cols) -dump-color-mode 1 -no-numbering -no-references |
+     elinks ${ELINKS_FLAGS} |
      less -Rcgm
