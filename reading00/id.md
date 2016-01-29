@@ -22,9 +22,6 @@ Examples
 	id -g (USER)
 
 
-
-
-
 Resources
 ---------
 
