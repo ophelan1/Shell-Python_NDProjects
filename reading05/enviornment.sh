@@ -1,5 +1,5 @@
 #!/bin/sh
-#Shell Script 
+#Shell Script "enviornment.sh"
 
 cat << _EOF_
 USER				is:$USER
