@@ -3,12 +3,11 @@
 set -e
 
 pngs=`find . -iname "*$SUFFIXES"`
-echo $pngs
 
 if [ "$VERBOSE" == "1" ]; then
 	set -v
 fi
 
 for file in $pngs; do
-        $CC $CFLAGS $file -o ${file%.*}
+        $CC $CFLAGS $file -o ${file%.*} || echo "ERROR: Compilation Failed for ${file}"
 done
