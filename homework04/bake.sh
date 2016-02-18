@@ -9,5 +9,5 @@ if [ "$VERBOSE" == "1" ]; then
 fi
 
 for file in $pngs; do
-        $CC $CFLAGS $file -o ${file%.*} || echo "ERROR: Compilation Failed for ${file}"
+        $CC $CFLAGS $file -o ${file%.*} || echo "ERROR: Compilation Failed for ${file}" && exit
 done
