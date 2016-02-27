@@ -18,4 +18,8 @@ reddit.sh
 2. I managed ordering using a pipeline. The input is grabbed by grep, maniuplated by sed, and then piped through $SORT and $SHUFFLE. Finally, it is piped into head and displayed. If a shuffled output is requested, $SORT="cat" && $SHUFFLE="shuf". Thus, it will be piped into $SORT, which will call cat (do nothing) and pipe the same input into $SHUFFLE. $SHUFFLE causes the input to be piped into the 'shuf' command, shuffling it, and then pipes the output to head. If a sorted output is requested, the same technique is used but this time $SORT="sort" && $SHUFFLE="cat".
 3. I'm sure this is not the OFFICAL way to do this, but it was the most convenient and got the job done. I simply created variable strings which corresponded to whether or not a flag has been called. If the flag arguments signal that the output should be piped through a command (i.e. "-s" means output should be sorted) then these variable string are set equal to the requested commands (i.e., sortString="sort"). If the commands in question should NOT be called, then the string values are set to "cat". THIS WAY, if I want to pipe input to output through several commands, there does not need to be any "if then" statements present in the pipeline. If a command is supposed to be run, input is piped into its value (aka input is piped into the commands that it's string value represents), manipulated, then piped out. If a command is not supposed to run, it's string value will be "cat", so it will simply pass the input to the next section of the pipe. It is easy to see how each specific flag affects the string values by looking at the case statement. 
 
-
+broify.sh
+---------
+1. Obvious in the code, simply used regexes and sed to delete
+2. Same as #1, simply deleted lines which match the regex
+3. Self Explanatory from reddit.sh & the case statement
