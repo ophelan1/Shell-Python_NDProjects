@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 ###### Main Function######
 declare -i input=${1-13}

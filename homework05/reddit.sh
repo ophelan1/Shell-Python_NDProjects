@@ -29,7 +29,6 @@ while test $# -gt 0; do
         esac
 done
 subReddit="$1"
-echo "The Sub Reddit is: $subReddit"
 curl -s http://www.reddit.com/r/$subReddit/.json | python -m json.tool | \
 grep -F '"url":' | \
 sed 's/^.*"url": "\(.*\)",/\1/g' | \

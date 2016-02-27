@@ -24,7 +24,7 @@ while [ $# -gt 0 ]; do
                         ;;
         esac
 done
-rmComments='sed 's/$DELIM.*$//g'' 
+rmComments='sed 's/[$DELIM].*$//g'' 
 
 $rmBlanks | \
 $rmComments | \
