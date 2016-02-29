@@ -20,6 +20,6 @@ reddit.sh
 
 broify.sh
 ---------
-1. Obvious in the code, simply used regexes and sed to delete
-2. Same as #1, simply deleted lines which match the regex
-3. Self Explanatory from reddit.sh & the case statement
+1. My piping method was the same as with reddit.sh. To remove comments, I simply set a variable equal to the DELIM as specified by the flag (set to '#' if no flag given). I then set a string variable equal to the commands necesary to remove these comments (a sed command used with a regex). When the input is sent through the pipe, it is piped through the string value of this variable, and so is piped through the correct comment deletion commands. It took me a while to deal with doing this to special characters such as '//' fron the example
+2. This was tricky because "grep" and "cat" pass their input one line at a time. If I were to use "sed REPLACE" I would need to find the pattern "\n\n" in the text (New line at the end of a string followed by another new line indicates a blank line of text). The means that I would need to consider multiple lines at once. It is much easier to use "sed DELETE". That way I can delete any line of text which is blank, and remove it from the stream entirely, instead of finding "\n\n" and replacing it with "\n".
+3. Much like reddit.sh, the command line arguments simply change the values of the stringVariable commands. 
