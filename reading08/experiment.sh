@@ -1,6 +1,4 @@
-#!/bin/sh -x
-
-ROLLS=10
+ROLLS=1000
 SIDES=6					
 while getopts "r:s:h" option; do		
 case $option in				
@@ -12,6 +10,7 @@ case $option in
  	esac
 done
 
+(
 j=0
 while [ $j -lt $ROLLS ]; do
 	(
@@ -23,3 +22,4 @@ while [ $j -lt $ROLLS ]; do
 	) | shuf | head -n 1
 	j=$((j+1))
 done
+) | awk '{count[$1]++}END{for(q in count) print q,"\t"count[q]}' | sort | > results.dat
