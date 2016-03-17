@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\title{Reading08, A Tale of Love, Loss, and LaTeX}
+\date{3/16/16}
+\author{Owen Phelan}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+%------------------------------------------------------------------------------
+	\section{overview}
+	\begin{verbatim}
+For this assignment I created the scripts roll_dice.sh, experiment.sh, and histogram.plt.
+
+roll_dice.sh - a program which accepts the number of sides for the dice (DEFAULT=6), and 
+number of rolls (DEFAULT=10). it then ouputs N random roll results, of a N sided die.
+
+experiment.sh - uses roll_dice.sh to output the result of rolling a standard dice 1000 
+times to a file named results.dat
+
+histogram.plt - uses the gnuplot command, along with the results.dat file, to output the 
+results to a histogram graph.
+	\end{verbatim}
+%------------------------------------------------------------------------------
+	\section{RollingDice}
+	\begin{verbatim}
+This shell script uses standard methods to accept user arguments for s (number of sides), 
+and r (number of rolls).vThe shell script works via a number of nested loops
+1. The script outputs all the possible rolls in order. 
+2. These outputs are then shuffled, so that the first output is a random one of the 
+possibilities, using shuf
+3. This first output is then taken by itself, using head
+4. This is repeated for the number of rolls requested, so that there are ROLL# random 
+possibilities as output.
+	\end{verbatim}
+%------------------------------------------------------------------------------
+	\section{Experiment}
+	\begin{verbatim}
+This shell script uses the exact same code as roll_dice.sh. It then uses awk & associative 
+arrays to keep track.
+1. A random list of output is sent from the roll_dice code
+2. This output is then passed to awk, which keeps track using an array called 'count'
+3. Each time a roll result is passed to awk, count[ - the given roll result - ] is 
+incremented.
+4. Awk reaches the END of it's parsing, and then prints all the possible results, and the 
+number of their occurances
+separated by a tap.
+5. This input is redirected to the file "results.dat"
+	\end{verbatim}
+%------------------------------------------------------------------------------
+	\section{Results}
+	\begin{figure}[h!]
+	\centering
+	\includegraphics{results.png}
+	\caption{Results Histogram}
+	\end{figure}
+	\newpage
+%------------------------------------------------------------------------------
+\end{document}
