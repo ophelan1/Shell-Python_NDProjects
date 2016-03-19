@@ -31,7 +31,19 @@ First, an awk grabs individual years (columns 1 & 2, 3 & 4, 5 & 6, 7 & 8)
 This is done twice, so that the results can be piped to two different awks
 The two different awks that it is piped to are used to print the totals, 
 both for the genders and for the ethnicities. Once everything was totaled 
-and computed, it was easy to enter the data into the table.
+and computed, it was easy to enter the data into the table. It was annoying
+trying to format the awk returns well, and eventually I just gave up. I kept
+getting:
+2013 1
+	 37
+M    49
+F    13
+(Or whatever actual data) because 2013 (in this example) had 37 blank spots.
+
+It was also very difficult dealing with the fact that my computer does not 
+have pdflatex, and homebrew does not offer an easy solution to this. I cannot
+test and see if my code works with pdf latex, and I just know it works when
+sublime builds the file. 
 
 	\end{verbatim}
 	\newpage
