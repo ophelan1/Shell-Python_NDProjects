@@ -1,0 +1,137 @@
+\documentclass{article}
+
+\title{Homework 06}
+\date{3/18/16}
+\author{Owen Phelan, phelan.eoin@gmail.com}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+%------------------------------------------------------------------------------
+	\section{Overview}
+	\begin{verbatim}
+To analyze the data I used dataProcessor.sh, which uses awk to separate the 
+data by column and calculate the totals. The result of this data parsing is 
+was disturbing. In the past 4 years, the demographics of Notre Dame students 
+has not changed. Women have made up around 22% of every class, every year. 
+The number of African American students has also not changed. This holds for
+every other demographic as well. 
+
+It is hard to interpret this data without first analyzing the demographics
+of Notre Dame undergrads as a whole. However, in a school that is more or 
+less half male and half female, the gender numbers at least are clearly 
+unbalanced. 
+
+	\end{verbatim}
+%------------------------------------------------------------------------------
+	\section{Methadology}
+	\begin{verbatim}
+I got the data using awk. 
+First, an awk grabs individual years (columns 1 & 2, 3 & 4, 5 & 6, 7 & 8)
+This is done twice, so that the results can be piped to two different awks
+The two different awks that it is piped to are used to print the totals, 
+both for the genders and for the ethnicities. Once everything was totaled 
+and computed, it was easy to enter the data into the table. It was annoying
+trying to format the awk returns well, and eventually I just gave up. I kept
+getting:
+2013 1
+	 37
+M    49
+F    13
+(Or whatever actual data) because 2013 (in this example) had 37 blank spots.
+
+It was also very difficult dealing with the fact that my computer does not 
+have pdflatex, and homebrew does not offer an easy solution to this. I cannot
+test and see if my code works with pdf latex, and I just know it works when
+sublime builds the file. 
+
+	\end{verbatim}
+	\newpage
+%------------------------------------------------------------------------------
+	\section*{Analysis}
+	\begin{table}[h!]
+	    \centering
+	    \begin{tabular}{c|c|c|c|c|c|c}
+	    Year	& 	 Female &  Male & White & Black & Asian & Hispanic\\
+	    \hline
+	    2013		& 	14 	& 	49 	& 	43 	& 	3 	& 	7 	& 	7\\
+	    2014		& 	12 	& 	44 	& 	43 	& 	2 	& 	5 	& 	4\\
+	    2015		& 	16 	& 	58 	& 	47 	& 	4 	& 	9 	& 	10\\
+	    2016		& 	19 	&	60 	& 	53 	&	1 	& 	9 	& 	9\\
+	    \end{tabular}
+	    \caption{Data Results}
+	    \label{tbl:Data Results}
+	\end{table}
+%------------------------------------------------------------------------------
+	\section{Discussion}
+	\begin{verbatim}
+    This assignment is a really challenging one for me. One the one hand,
+I care very deeply about gender and race equality. I took the white privilege
+seminar last year, and attended the white privilege conference in Lousiville 
+that spring. I  have spent two summers teaching in west Philadelphia, and have
+experienced first hand how minorities can be taught that certain futures are
+simply not open to them. 
+   All this is to say that, usually, I am the first person in line calling
+for an increase in diversity and gender equality. This is the reason this 
+assignment is so difficult to answer. I am not sure that diversity is necessary 
+in a software engineering environment. 
+   The reason having a diverse team - despite being indicative of an accepting
+culture - is important for obvious reasons. When you have different people from
+different backgrounds helping to solve a problem, you will get different 
+input and opinions. You will be better able to come up with a solution, because
+there will be a diverse set of possible solutions available. When you have a 
+lack of diversity, you have a lack of opinion. However, I'm not sure how this
+can possibly be applicable to computer science. Whether you have a team with 
+three white men, or a white man a black man and a Hispanic woman, there is no 
+difference in the tam's ability to code something. A diverse team is necessary
+to think of the best programs and services and design. A diverse team is not 
+necessary to actually implement these designs. 
+   Take the example of a plumbing company. If you have a team made up entirely
+of men, the company will not be able to design good products. Can you imagine a 
+bathroom designed entirely by men? It would be a fiasco? That being said,
+once the bathroom is designed, actually fitting the pipes together is not 
+something that requires diverse input. Either your plumber can assemble pipes
+correctly, and is a good plumber, or is not. Their gender, race, etc. has no 
+impact on their ability, and should not enter the equation when they are 
+applying for a job.
+   I believe Google's statistics are a fair representation of this belief.
+In non-coding jobs, their gender employment rate is more or less equal. However,
+for jobs that actually require coding, their employment rate is skewed heavily
+in the male direction. I do not believe this is a problem with Google. 
+Especially because the application process for software engineers is normally
+blind (coding challenge sent via email) until later rounds. Google probably
+employs much more men, because there are many more competitive male coders
+then female coders.
+   The issue then is not how to make computer science more diverse, in my 
+experience the tech industry is one of the most accepting communities there
+is. Rather, the issue is "What is is about our society that attracts men to 
+computer science, and not women".
+   This directly relates to the computer science department at ND, but it 
+makes the job of our computer science department much more difficult. First of
+all, we are a school with absolutely horrifying gender and race relations. This
+is of course a personal opinion, but one that I truly believe. Notre Dame 
+operates on gender expectations which spring from outdated Catholicism (I will
+cite the fact that disciplinary action in the school tends to function on the
+principle that women should live in cloisters but "boys will be boys"). In 
+addition, the majority of privileged Irish catholics in this country are white,
+not surprisingly. This means that a lot of Notre Dame kids have never had a
+minority as a friend, and a lot of Notre Dame kids have never had friends 
+without a lot of money. All this makes for a school of educated men and women,
+who SAY that they care about gender equality and racial exception, but who 
+have never had the opportunity to develop an actual empathy for those 
+demographics they claim to be defending. This is not their fault, I honestly
+believe that they do not know any better (during the white privilege seminar 
+I had a number of male students tell me that it's no better to be a man than 
+a woman in America, and no better to be white then black.... which is simply
+incorrect).
+   All that being said, how can we expect women who do not follow typical 
+gender norms (woman who play computer games, women who like computer science), 
+to want to attend a school like Notre Dame, where outdated gender norms are 
+socially enforced? How can we expect minorities to want to attend here? And 
+once these women and minorities DO come to ND, and if they decide to do 
+computer science, what can Notre Dame do to include them further? As far
+as I can tell, the issue is the environment at Notre Dame, the issue is 
+the environment in America. 						
+	\end{verbatim}
+%------------------------------------------------------------------------------
+\end{document}
