@@ -19,7 +19,7 @@ def usage(status=0):
 # Parse command line options
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "c")
+    opts, args = getopt.getopt(sys.argv[1:], "hc")
 except getopt.GetoptError as e:
     print e
     usage(1)
@@ -33,8 +33,13 @@ for o, arg in opts:
 if len(args) == 0:
     args.append('-')
 
+for path in args:
+    if path == '-':
+        stream = sys.stdin
+    else:
+        stream = open(path)
+
 # Main execution
-stream = sys.stdin
 inputLines=[]
 for line in stream:
 	inputLines.append(line)
@@ -56,6 +61,3 @@ else:
 			checked[e]=checked[e]+1
 	for x in checked:
 		print checked[x], x.rstrip()
-
-
-print "End of program reached"

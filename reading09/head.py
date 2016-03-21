@@ -33,8 +33,13 @@ for o, arg in opts:
 if len(args) == 0:
     args.append('-')
 
+for path in args:
+    if path == '-':
+        stream = sys.stdin
+    else:
+        stream = open(path)
+
 # Main execution
-stream = sys.stdin
 countCheck=0
 for line in stream:
 	if countCheck == COUNT:

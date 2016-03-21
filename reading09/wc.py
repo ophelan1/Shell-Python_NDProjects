@@ -45,20 +45,22 @@ for o, arg in opts:
 if len(args) == 0:
     args.append('-')
 
+for path in args:
+    if path == '-':
+        stream = sys.stdin
+    else:
+        stream = open(path)
+
 # Main execution
-stream = sys.stdin
 text=''
 for line in stream:
     text=text+line
 stream.close()
 
 if printBytes == 'TRUE':
-    print "You chose to print the Character Count"
     print len(text)
 if printWords == 'TRUE':
-    print "You Chose to print the word Count"
     words=text.split(None)
     print len(words)
 if printNewline == 'TRUE':
-    print "You Chose to print the number of new lines"
     print text.count('\n')

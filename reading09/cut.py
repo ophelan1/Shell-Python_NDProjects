@@ -39,12 +39,17 @@ for o, arg in opts:
 if len(args) == 0:
     args.append('-')
 
+for path in args:
+    if path == '-':
+        stream = sys.stdin
+    else:
+        stream = open(path)
+
 if FIELDS=='NONE':
   print "ERROR: MUST SPECIFY FIELDS"
   usage(1)
 
 # Main execution
-stream = sys.stdin
 inputLines=[]
 for line in stream:
 	inputLines.append(line)
