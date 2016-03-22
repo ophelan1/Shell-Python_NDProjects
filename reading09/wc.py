@@ -42,14 +42,21 @@ for o, arg in opts:
     else:
         usage(1)
 
+implicit='FALSE'
+
 if len(args) == 0:
     args.append('-')
+    implicit='TRUE'
+
 
 for path in args:
     if path == '-':
         stream = sys.stdin
     else:
         stream = open(path)
+
+if implicit=='TRUE':
+    path=''
 
 # Main execution
 text=''
@@ -58,9 +65,12 @@ for line in stream:
 stream.close()
 
 if printBytes == 'TRUE':
-    print len(text)
+    output=str(len(text))+" "+path
+    print output.rstrip()
 if printWords == 'TRUE':
     words=text.split(None)
-    print len(words)
+    output=str(len(words))+" "+path
+    print output.rstrip()
 if printNewline == 'TRUE':
-    print text.count('\n')
+    output=str(text.count('\n'))+" "+path
+    print output.rstrip()

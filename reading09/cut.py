@@ -29,7 +29,7 @@ except getopt.GetoptError as e:
 
 for o, arg in opts:
     if o == '-d':
-        DELIM = arg
+      DELIM = arg
     elif o == '-f':
         fieldString=str(arg)
         FIELDS=fieldString.split(",")
@@ -52,7 +52,8 @@ if FIELDS=='NONE':
 # Main execution
 inputLines=[]
 for line in stream:
-	inputLines.append(line)
+  inputLines.append(line)
+
 stream.close()
 
 for txt in inputLines:
@@ -61,5 +62,7 @@ for txt in inputLines:
   for i in FIELDS:
     if ( int(i) <= len(splitTxt) ):
       printablefield=splitTxt[int(i)-1].rstrip()
-      finalPrint=finalPrint+printablefield+' '
-  print finalPrint
+      finalPrint=finalPrint+printablefield+DELIM
+
+  finalPrint=finalPrint[:-1]
+  print finalPrint.rstrip()

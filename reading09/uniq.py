@@ -46,18 +46,21 @@ for line in stream:
 stream.close()
 
 if COUNT == 'FALSE': 
-   checked = []
-   for e in inputLines:
-       if e not in checked:
-           checked.append(e)
-   print ''.join(map(str, checked))
+	print inputLines[0].rstrip()
+	for e in range(1,len(inputLines)):
+		if inputLines[e].rstrip('\n') != inputLines[e-1].rstrip('\n'):
+			print inputLines[e].rstrip()
 
 else:
-	checked={}
-	for e in inputLines:
-		if e not in checked:
-			checked[e]=1
+	repCount=1
+	for e in range(0,len(inputLines)-1):
+		
+		if inputLines[e].rstrip('\n') != inputLines[e+1].rstrip('\n'):
+			print str(repCount).rjust(7), inputLines[e].rstrip()
+			repCount=1
 		else:
-			checked[e]=checked[e]+1
-	for x in checked:
-		print checked[x], x.rstrip()
+			repCount=repCount+1
+	print str(repCount).rjust(7), inputLines[len(inputLines)-1].rstrip()
+
+
+
