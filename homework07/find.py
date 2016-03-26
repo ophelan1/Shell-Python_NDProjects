@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import getopt
+import stat
 import os
 import sys
 import re
@@ -122,6 +123,11 @@ def include(path):
     if REGEX:
         if re.match(REGEX, path) is None:
             return False
+
+    if PERMISSIONS:
+        perm = stat.S_IMODE(inode.st_mode)
+        if perm != PERMISSIONS:
+                return False
 
     if UID:
         if stat.ST_UID(inode.st_mode) != UID:
