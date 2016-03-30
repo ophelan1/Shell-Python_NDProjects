@@ -21,8 +21,8 @@ EXECUTABLE = False
 READABLE = False
 WRITABLE = False
 EMPTY = False
-UID = 0
-GID = 0
+UID = ''
+GID = ''
 
 # Functions
 
@@ -101,8 +101,6 @@ def include(path):
         elif os.path.islink(path) and linkStatus == "broken":
             return False
 
-
-
     if READABLE:
         if not os.access(path, os.R_OK):
             return False
@@ -125,57 +123,76 @@ def include(path):
             return False
 
     if PERMISSIONS:
-        perm = stat.S_IMODE(inode.st_mode)
-        if perm != PERMISSIONS:
-                return False
 
-    if UID:
-        if stat.ST_UID(inode.st_mode) != UID:
+        perm = oct(stat.S_IMODE(inode.st_mode))
+        if perm != PERMISSIONS:
             return False
 
-    if GID:
-        if stat.ST_GID(inode.st_mode) != GID:
+    if NEWERFILE:
+
+        if linkStatus == "broken":
+            return False
+        try:
+            newinode = os.stat(NEWERFILE)
+        except:
+            newinode = os.lstat(NEWERFILE)
+
+        if not (os.path.isfile(path) or os.path.isdir(path)):
+            return False
+        if (inode.st_mtime) <= (newinode.st_mtime):
+            return False
+
+    if UID != '':
+        if inode.st_uid != UID:
+            return False
+
+    if GID != '':
+        if inode.st_gid != GID:
             return False
 
 
     return True
 
 # Parse Command line arguments
+
 args = sys.argv
 if os.path.isdir(args[1]):
     DIRECTORY = args[1]
 else:
     error("Need to Specify Directory As First Argument")
 
-for i in range(1, len(sys.argv)):
-    if args[i] == "-type":
-        TYPE = args[i+1]
-    elif args[i] == "-executable":
-        EXECUTABLE = True
-    elif args[i] == "-readable":
-        READABLE = True
-    elif args[i] == "-writable":
-        WRITABLE = True
-    elif args[i] == "-empty":
-        EMPTY = True
-    elif args[i] == "-name":
-        NAME = args[i+1]
-    elif args[i] == "-path":
-        PATH = args[i+1]
-    elif args[i] == "-regex":
-        REGEX = args[i+1]
-    elif args[i] == "-perm":
-        PERMISSIONS = args[i+1]
-    elif args[i] == "-newer":
-        NEWERFILE = args[i+1]
-    elif args[i] == "-uid":
-        UID = args[i+1]
-    elif args[i] == "-gid":
-        GID = args[i+1]
-    elif args[i] == "-h":
-        usage(1)
+if len(args) > 2:
+    for i in range(2, len(args)):
+        if args[i] == "-type":
+            TYPE = args[i+1]
+        elif args[i] == "-executable":
+            EXECUTABLE = True
+        elif args[i] == "-readable":
+            READABLE = True
+        elif args[i] == "-writable":
+            WRITABLE = True
+        elif args[i] == "-empty":
+            EMPTY = True
+        elif args[i] == "-name":
+            NAME = args[i+1]
+        elif args[i] == "-path":
+            PATH = args[i+1]
+        elif args[i] == "-regex":
+            REGEX = args[i+1]
+        elif args[i] == "-perm":
+            PERMISSIONS = str(args[i+1])
+            if len(PERMISSIONS) == 3:
+                PERMISSIONS = '0' + PERMISSIONS
+        elif args[i] == "-newer":
+            NEWERFILE = args[i+1]
 
-# Main Execution
+        elif args[i] == "-uid":
+            UID = int(args[i+1])
+        elif args[i] == "-gid":
+            GID = int(args[i+1])
+        elif args[i] == "-h":
+            usage(1)
+
 if include(DIRECTORY):
     print DIRECTORY
 
