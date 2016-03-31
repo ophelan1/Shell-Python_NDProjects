@@ -16,11 +16,12 @@ def usage(status=0):
 
 # Create Temporary File
 os.system("touch tmp")
-
 OUT = os.open("tmp",os.O_RDWR)
 for arg in sys.argv[1:]:
 	os.write(OUT, arg)
 	os.write(OUT,"\n")
+
+os.close(OUT)
 
 try: 
 	os.system('$EDITOR tmp')
@@ -39,5 +40,7 @@ for fileTitle in ISTREAM:
 		sys.exit(0)
 	INDEX += 1
 	NAME = ""
+
+ISTREAM.close()
 
 os.system('rm tmp')
