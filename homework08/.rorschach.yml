@@ -1,0 +1,6 @@
+- pattern:  '*'
+  action:   'echo {path}'
+- pattern:  '*.txt'
+  action:   'echo "IS A TEXT FILE!!!"'
+- pattern:  '*'
+  action:   'echo {name}'
