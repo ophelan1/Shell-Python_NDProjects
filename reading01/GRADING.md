@@ -1,11 +1,9 @@
 Reading01 - Grading
 ==================
-**Score** = 2.25/4
+**Score** = 4/4
 
 Deductions
 ---------
--0.25 q6
--0.25*6 missing summary pages
 
 Comments
 --------
