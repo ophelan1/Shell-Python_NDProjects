@@ -1,29 +1,31 @@
 CC=             gcc
-CFLAGS=         # TODO
+CFLAGS=         
 LD=             gcc
-LDFLAGS= -c
+LDFLAGS= 		 
 AR=             ar
-ARFLAGS=        # TODO
-TARGETS=        libgcd.a libgcd.so gcd-static
+ARFLAGS=        -rc
+TARGETS=        libgcd.a libgcd.so gcd-static gcd-dynamic
 
-all: gcd-dynamic gcd-static
-
-gcd-dynamic: main.c libgcd.so
-        gcc -o gcd-dynamic -L. main.c -lgcd
-
-gcd-static: libgcd.a main.c
-        gcc -static -o gcd-static -L. main.c -lgcd
+all: $(TARGETS)
 
 libgcd.a: gcd.o
-        ar -rcs libgcd.a  gcd.o
+		$(AR) $(ARFLAGS) $@ $<
 
-libgcd.so: gcd.c
-        gcc -fPIC -c -o libgcd.o $^
-        gcc -shared -o libgcd.so libgcd.o
+libgcd.so: gcd.o
+		$(LD) $(CFLAGS) -shared -o $@ $<
+
+gcd-dynamic: main.o libgcd.so
+		$(LD) $(LDFLAGS) -o $@ -L. $< -lgcd
+
+gcd-static: main.o libgcd.a
+		$(LD) $(LDFLAGS) -static -o $@ -L. $< -lgcd
 
 %.o: %.c
-        gcc -c -o $@ $^
-
+		$(CC) -c -o $@ $^
 
 clean:
-      	rm -f $(TARGETS) *.o
+		rm -f $(TARGETS) *.o
+
+
+
+
