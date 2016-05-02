@@ -4,22 +4,22 @@ TLDR - ls
 Overview
 --------
 
-[ls (modifier)] lists the contents of a directory. 
+[ls (modifier) [DIRECTORY]] lists the contents of a directory. 
 
 Examples
 --------
 
 -List all entries including hidden ones-
 	
-	-a
+	>>> ls -a [DIRECTORY PATH]
 
 -List the long form of each item-
 	
-	-l
+	>>> ls -l [DIRECTORY PATH]
 
 -List contents in order of latest modified-
 	
-	-t
+	>>> ls -t [DIRECTORY PATH]
 
 
 Resources

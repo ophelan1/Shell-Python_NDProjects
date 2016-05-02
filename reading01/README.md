@@ -1,3 +1,8 @@
+REGRADING CHANGES:
+	1. README - Q6 Corrected
+	2. ln.md, ls.md, ps.md - Updated
+	3. kill.md, write.md, time.md - Newly Created
+
 Reading 01
 ==========
 
@@ -36,7 +41,9 @@ kill 25263
 
 6. To terminate the "urxvt" process:
 
-kill 25129
+ORIGINAL SUBMISSION: kill 25129
+RE-GRADE SUBMISSION: kill 25129 25913
+
 
 
 
