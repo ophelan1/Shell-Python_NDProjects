@@ -77,3 +77,28 @@ For each of the three classes of bugs, describe how you diagnosed the problem, w
 Of the bugs you found and fixed, which one was the hardest? Discuss why that bug was so difficult for you and what can be done in the future to prevent such bugs.
 
 	The hardest bug for me to crack dealt with the memory allocation of my sanitized string. (char *sanitized = strdup(s);). The reason it was so difficult, was because my error message did not referene that section of the code. Rather, because that section of the code was outputting an incorrect variable, the error only showed up later when that variable was passed to the next function. In future, I think I will try to include regular checks in the code, which print out variables and their types, so I can keep track of what each function is outputting.
+
+
+1. strace /afs/nd.edu/user15/pbui/pub/bin/COURIER - "Are you sure you put the package in the right place"
+		> Found in code: stat(/tmp/ophelan1.deaddrop)
+		>>> echo "test" > /tmp/ophelan1.deaddrop
+		>>> strace /afs/nd.edu/user15/pbui/pub/bin/COURIER
+
+2. strace /afs/nd.edu/user15/pbui/pub/bin/COURIER - "Whoa whoa... you can't give everyone access to the package! Lock it down!"
+		> Found in code: {st_mode=S_IFREG|0711, st_size=5, ...})
+		>>> chmod 0700 /tmp/ophelan1.deaddrop
+		>>> strace /afs/nd.edu/user15/pbui/pub/bin/COURIER
+
+3. strace ... - "What are you trying to pull here? The package is the wrong size!"
+		> Found in code: read(3, "test\n", 8)
+		>>> nano /tmp/ophelan1.deaddrop [ change to a 8char string, (8 bytes)]
+		>>> strace...
+
+3. "Well, everything looks good... I'm not sure what 'abcdefgh' means, but I'll pass it on."
+
+
+
+
+
+
+
