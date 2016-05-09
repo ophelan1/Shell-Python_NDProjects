@@ -1,10 +1,12 @@
 Homework 01 - Grading
 =====================
 
-**Score**: 2 / 15
+**Score**: 11.5 / 15
 
 Deductions
 ----------
+
+-3.5
 Unanswered Exercises
 
 Comments
